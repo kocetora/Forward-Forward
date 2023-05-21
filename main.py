@@ -5,10 +5,10 @@ from model import *
     
 if __name__ == "__main__":
     torch.manual_seed(42)
-    train_loader, eval_train_loader, eval_test_loader = MNIST_loaders()
+    train_loader, eval_train_loader, eval_test_loader = CIFAR10_loaders()
 
-    net = FFNet([784, 2000, 2000, 2000, 2000])
-    
+    net = FFNet([3072, 3072, 3072, 10])
+
     time_training_start = time.time()
     net.train_3(train_loader)
     time_training_end = time.time()

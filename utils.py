@@ -1,11 +1,11 @@
 import torch
-from torchvision.datasets import MNIST
+from torchvision.datasets import CIFAR10
 from torchvision.transforms import Compose, ToTensor, Normalize, Lambda
 from torch.utils.data import DataLoader
 import matplotlib.pyplot as plt
 import numpy as np
 
-def MNIST_loaders(train_batch_size=1000, test_batch_size=10000):
+def CIFAR10_loaders(train_batch_size=1000, test_batch_size=10000):
 
     transform = Compose([
         ToTensor(),
@@ -13,19 +13,19 @@ def MNIST_loaders(train_batch_size=1000, test_batch_size=10000):
         Lambda(lambda x: torch.flatten(x))])
 
     train_loader = DataLoader(
-        MNIST('./data/', train=True,
+        CIFAR10('./data/', train=True,
               download=True,
               transform=transform),
         batch_size=train_batch_size, shuffle=True)
 
     eval_train_loader = DataLoader(
-        MNIST('./data/', train=True,
+        CIFAR10('./data/', train=True,
               download=True,
               transform=transform),
         batch_size=test_batch_size, shuffle=False)
 
     eval_test_loader = DataLoader(
-        MNIST('./data/', train=False,
+        CIFAR10('./data/', train=False,
               download=True,
               transform=transform),
         batch_size=test_batch_size, shuffle=False)
@@ -53,8 +53,8 @@ def overlay_labels_on_images(images, labels):
     return data
 
 def visualize_sample(data, name='', idx=0):
-    reshaped = data[idx].cpu().reshape(28, 28)
-    plt.figure(figsize = (4, 4))
-    plt.title(name)
-    plt.imshow(reshaped, cmap="gray")
-    plt.show()
+    reshaped = data[idx].cpu().reshape(32, 32)
+    # plt.figure(figsize = (4, 4))
+    # plt.title(name)
+    # plt.imshow(reshaped, cmap="gray")
+    # plt.show()

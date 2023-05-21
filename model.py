@@ -8,7 +8,7 @@ class FFNet(torch.nn.Module):
 
     def __init__(self, dims):
         super().__init__()
-        self.num_epochs = 60
+        self.num_epochs = 250
         self.layers = []
         self.device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
         for d in range(len(dims) - 1):
